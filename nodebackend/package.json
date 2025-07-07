@@ -1,0 +1,15 @@
+{
+  "name": "nodebackend",
+  "version": "1.0.0",
+  "description": "It involves the backend by playlist by HELLOWORLD",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Himanshi",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.4"
+  }
+}
