@@ -1,22 +1,23 @@
-var add=function(a,b){
-    return a+b;
-}
-var result=add(11,22);
-console.log(result);
-//or
-function subtract(a,b){
-    return a-b;
-}
-// Arrow function
-var multiply = (x,y) => {return x*y;}
-var divide =(x,y) => x/y;
+const express = require('express')
+const app = express()
 
-console.log(multiply(5,6));
-console.log(divide(20,4));
-var ans=subtract(10,5);
-console.log(ans);
+app.get('/',function(req,res){
+    res.send('Hello sir !How can i help you?')
+})
 
-//self-invoking function
-(function (){
-    console.log("This is a self-invoking function");
-})();
+app.get('/chicken',(req,res)=>{
+    res.send("Yes sir! Chicken is available")
+})
+app.get('/idli',(req,res)=>{
+    var idli={
+        'name':'rava idli',
+        'size':'10 cm radius',
+        'is_chutney':true
+    }
+    res.send(idli)
+})
+
+
+app.listen(3001,()=>{
+    console.log('Server is running on port 3001');
+})
