@@ -1,20 +1,11 @@
 const express = require('express')
 const app = express()
+const db=require('./db');//Import the database connection
+
+const person=require('./models/person');//Import the person model
 
 app.get('/',function(req,res){
     res.send('Hello sir !How can i help you?')
-})
-
-app.get('/chicken',(req,res)=>{
-    res.send("Yes sir! Chicken is available")
-})
-app.get('/idli',(req,res)=>{
-    var idli={
-        'name':'rava idli',
-        'size':'10 cm radius',
-        'is_chutney':true
-    }
-    res.send(idli)
 })
 
 
