@@ -7,12 +7,12 @@ const mongoURL='mongodb://localhost:27017/HotelsDb'
 
 //Set up MongoDB connection
 mongoose.connect(mongoURL)
-  .then(() => {
-    console.log("✅ Connected to MongoDB server");
-  })
-  .catch((err) => {
-    console.error("❌ Error connecting to MongoDB:", err);
-  });
+  // .then(() => {
+  //   console.log("✅ Connected to MongoDB server");
+  // })
+  // .catch((err) => {
+  //   console.error("❌ Error connecting to MongoDB:", err);
+  // });
 
 //Get the default connection onject
 //Mongoose maintain the default connection object to represent Mongodb connection

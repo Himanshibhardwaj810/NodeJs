@@ -14,15 +14,15 @@ const personSchema=new mongoose.Schema({//TO define the structure and datatypes 
         enum:["Chef","Waiter","Manager"],//to pass multiple choices
         required:true,
     },
-    Mobile:{
+    mobile:{
         type:Number,
         required:true,
-        unique:true,//to make it unique
+        
     },
     email:{
         type:String,
         required:true,
-        unique:true,
+        unique:true,//to make it unique
     },
     salary:{
         type:Number,    
@@ -30,5 +30,5 @@ const personSchema=new mongoose.Schema({//TO define the structure and datatypes 
 })
 
 //Create a model for the person schema
-const person=mongoose.model('Person',personSchema);
+const person=mongoose.model('Person',personSchema);//Create a Model named Person using the personSchema schema.
 module.exports=person;//Export the model to use it in other files
