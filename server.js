@@ -10,65 +10,13 @@ app.get('/', function (req, res) {
     res.send('Hello sir !How can i help you?')
 })
 
-//Create a new person Post route for new person
-app.post('/person', async (req, res) => {
-    try {
-        const data = req.body;//Get the data from the request body parsed by bodyParser
+//Import the router files
+const personRoutes=require('./routes/personRoutes');//Import the person routes
+const menuRoutes=require('./routes/menuRoutes');//Import the menuRoutes
 
-        const newPerson = new person(data);//Create a new instance of the person model with the data
-        //newPerson.name=data.name;
-
-        //save the newPerson to database
-        const savednewperson = await newPerson.save()
-        console.log("Person data is saved successfully");
-        res.status(200).json(savednewperson);
-
-    } catch (error) {
-        console.log("There is error while saving the person:", error);
-        res.status(500).json({ error: "Internal server error" })
-    }
-})
-
-//Get method to fetch data from database
-app.get('/person',async(req,res)=>{
-    try{//here person is imported data model
-        const data=await person.find();//Fetch all the data from person collection
-        console.log("Person data is fetched from database successfully");
-        res.status(200).json(data);
-
-    }catch(error){
-        console.log("There is error while saving the person:", error);
-        res.status(500).json({ error: "Internal server error" })
-
-    }
-})
-
-//Post method to create a new menu item
-app.post('/menu',async(req,res)=>{
-    try{
-        const data=req.body;
-        const newMenuItem=new Menu(data);
-
-        const result=await newMenuItem.save();
-        console.log("Menu item is saved successfully");
-        res.status(200).json(result);
-    }catch(error){
-        console.log("Internal server error",error);
-        res.status(500).json({ error: "Internal server error" });
-    }
-})
-
-//Get method to fetch all menu items
-app.get('/menu',async(req,res)=>{
-    try{
-        const menuItem=await Menu.find();//Fetch all the menu items from the Menu collection
-        console.log("Person data is fetched from database successfully");
-        res.status(200).json(data);
-    }catch(error){
-        console.log("There is error while fetching the menu items:", error);
-        res.status(500).json({ error: "Internal server error" });
-    }
-})
+// Use the routers file
+app.use('/person', personRoutes);//Use the person routes
+app.use('/menu',menuRoutes);//Use the menu routes
 
 //***********this is old save method using callback******************* */
 // //Create a new person Post route for new person
