@@ -2,8 +2,8 @@ const express = require('express')
 const app = express()
 const db = require('./db');//Import the database connection
 const bodyParser = require('body-parser');
+app.use(bodyParser.json());//Middleware to parse JSON request bodies into objects
 const person = require('./models/person');//Import the person model
-app.use(bodyParser.json());//Middleware to parse JSON request bodies into objects 
 const Menu=require('./models/Menu.js');//Import the Menu model
 
 app.get('/', function (req, res) {
