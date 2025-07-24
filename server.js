@@ -6,6 +6,10 @@ app.use(bodyParser.json());//Middleware to parse JSON request bodies into object
 const person = require('./models/person');//Import the person model
 const Menu=require('./models/Menu.js');//Import the Menu model
 
+require('dotenv').config();//Take the environment variables from .env file
+
+const PORT=process.env.PORT||3001;//Set the port from environment variable or default to 3001
+//if code is installed on another machine then they will use different PORT otherwise LOcalhost
 app.get('/', function (req, res) {
     res.send('Hello sir !How can i help you?')
 })
@@ -39,6 +43,6 @@ app.use('/menu',menuRoutes);//Use the menu routes
 // })
 
 
-app.listen(3001, () => {
+app.listen(PORT, () => {
     console.log('Server is running on port 3001');
 })

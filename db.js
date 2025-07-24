@@ -1,9 +1,14 @@
 //db.js file is responsible for managing the database operations b/w the node.js applications and mongodb using
 //mongoose library
 const mongoose=require('mongoose');
+require('dotenv').config();//Load environment variables from .env file
 
 //Define the MongoDB Connection URL
-const mongoURL='mongodb://localhost:27017/HotelsDb'
+
+//we can also connect to local host by typing mongosh command and pasting url here
+// const mongoURL=  MONGO_DB_URL_LOCAL;
+
+const mongoURL=process.env.DB_URL;//Get the MongoDB URL from environment variable
 
 //Set up MongoDB connection
 mongoose.connect(mongoURL)
