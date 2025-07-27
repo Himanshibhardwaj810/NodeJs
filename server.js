@@ -3,23 +3,38 @@ const app = express()
 const db = require('./db');//Import the database connection
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());//Middleware to parse JSON request bodies into objects
-const person = require('./models/person');//Import the person model
-const Menu=require('./models/Menu.js');//Import the Menu model
+const passport=require('./auth');
 
 require('dotenv').config();//Take the environment variables from .env file
 
+//setting the Middleware
+const logRequest=(req,res,next)=>{
+    console.log(`${new Date().toLocaleString()} Request made to URl:${req.originalUrl}`);
+    next(); //Call the next middleware 
+
+}
+app.use(logRequest);
+
+
+//This activates Passport in your Express app.
+app.use(passport.initialize());//Initialize passport middleware
+
 const PORT=process.env.PORT||3001;//Set the port from environment variable or default to 3001
 //if code is installed on another machine then they will use different PORT otherwise LOcalhost
-app.get('/', function (req, res) {
+
+
+const localAuthMiddleware=passport.authenticate('local',{session:false})
+app.get('/',function (req, res) {
     res.send('Hello sir !How can i help you?')
 })
 
 //Import the router files
 const personRoutes=require('./routes/personRoutes');//Import the person routes
 const menuRoutes=require('./routes/menuRoutes');//Import the menuRoutes
+const { findLastKey } = require('lodash');
 
 // Use the routers file
-app.use('/person', personRoutes);//Use the person routes
+app.use('/person',localAuthMiddleware ,personRoutes);//Use the person routes
 app.use('/menu',menuRoutes);//Use the menu routes
 
 //***********this is old save method using callback******************* */

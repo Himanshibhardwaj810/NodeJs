@@ -6,9 +6,9 @@ require('dotenv').config();//Load environment variables from .env file
 //Define the MongoDB Connection URL
 
 //we can also connect to local host by typing mongosh command and pasting url here
-// const mongoURL=  MONGO_DB_URL_LOCAL;
+const mongoURL=  process.env.MONGO_DB_URL_LOCAL;
 
-const mongoURL=process.env.DB_URL;//Get the MongoDB URL from environment variable
+// const mongoURL=process.env.DB_URL;//Get the MongoDB URL from environment variable
 
 //Set up MongoDB connection
 mongoose.connect(mongoURL)
