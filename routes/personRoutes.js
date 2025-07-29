@@ -8,7 +8,7 @@ const person = require('../models/person');//Import the person model
 // ../models/person = ek folder peeche jaake models/person
 
 //Create a new person Post route for new person
-router.post('/', async (req, res) => {
+router.post('/signUp', async (req, res) => {
     try {
         const data = req.body;//Get the data from the request body parsed by bodyParser
 

@@ -34,7 +34,7 @@ const menuRoutes=require('./routes/menuRoutes');//Import the menuRoutes
 const { findLastKey } = require('lodash');
 
 // Use the routers file
-app.use('/person',localAuthMiddleware ,personRoutes);//Use the person routes
+app.use('/person' ,personRoutes);//Use the person routes
 app.use('/menu',menuRoutes);//Use the menu routes
 
 //***********this is old save method using callback******************* */
