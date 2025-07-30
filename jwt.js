@@ -3,6 +3,12 @@ const jwt=require('jsonwebtoken');
 
 //middleware for verification of jwt token on sending request by user
 const jwtAuthMiddleware=(req,res,next)=>{
+    //Check if the request has authorization header
+    const authorizationHeader=req.headers.authorization;
+    if(!authorizationHeader){
+        return res.status(401).json({error:"Token Not found"});//If not present, return unauthorized error
+    }
+    //If present, split the header to get the token
     //Extract the JWT token from the request(authorization header)
     const token=req.headers.authorization.split(' ')[1]; //As when we want to access the token,the bearer is written first
     //then after space the token is written so using split method the 1th index contain the token
@@ -26,6 +32,7 @@ const jwtAuthMiddleware=(req,res,next)=>{
 
 //Function to generate JWT token USING USER DATA
 const generateJwtToken=(userData)=>{
-    return jwt.sign(userData,process.env.JWT_SECRET);
+    return jwt.sign({userData},process.env.JWT_SECRET,{expiresIn:30000});//adding expiration time
 }
+//This userData should be object otherwise this expiresIn doesn’t work correctly
 module.exports={jwtAuthMiddleware,generateJwtToken};
